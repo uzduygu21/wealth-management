@@ -1,0 +1,315 @@
+{% extends "finance/layout.html" %}
+{% block title %}
+About
+{% endblock %}
+{% block body %}
+<div>
+    <div class="container">
+        {% if user.is_authenticated %}
+        {% if request.user.is_superuser %}
+        <h6>Welcome, Financial Advisor </h6>
+    
+        
+        <div style="margin-top: 10px;margin-bottom: 20px;">
+            <a class="btn-question" href="{% url 'questions' %}">Questions from Clients</a>
+        </div>
+        
+        {% else %}
+        <h6>Welcome, {{ request.user.get_full_name }} </h6>
+        {% endif %}
+        {% endif %}
+    </div>
+    
+    <div id="our-approach">
+        <div class="img-prnt">
+            <img src="https://lp-cms-production.imgix.net/2019-06/GettyImages-122180577_high.jpg?auto=format&fit=crop&ixlib=react-8.6.4&h=520&w=1312"
+                alt="">
+            <div class="centered-txt">
+                <h1>About Us</h1>
+            </div>
+        </div>
+        <div class="container">
+            <div class="text-center font-weight-light">
+                <h4 class="align-work">How We Work</h4>
+                <p>
+                    Our first priority is helping you take care of yourself and your family. We want to learn more about
+                    your personal situation,
+                    identify your dreams and goals, and understand your tolerance for risk.
+                    Long-term relationships that encourage open and honest communication have been the cornerstone of my
+                    foundation of success.
+                </p>
+                <img src="https://media.fromthegrapevine.com/assets/images/2016/4/handshake-hand.jpg.696x0_q71_crop-smart.jpg"
+                    style="max-width:28%; float: right;">
+                <p class="align-work">
+                    As financial professionals, we are committed to helping people just like you create solutions for their
+                    retirement assets.
+                    Once we understand your risk tolerance, time horizon,
+                    and goals, we'll work to develop a program that is designed to carefully balances investment strategies
+                    with preserving principal.
+                </p>
+                <p class="align-work">
+                    Today’s economic environment brings challenges. But along with challenges come opportunities and
+                    potential rewards.
+                    We work closely with our clients to evaluate those opportunities and reap those rewards.
+                </p>
+                <p class="align-work" style="margin-bottom: 5rem;">
+                    We invite you to check out all the material on our website. If something prompts a question, please send
+                    us an email or call the office.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="our-services">
+        <div class="img-prnt">
+            <img src="https://www.parallels.com/blogs/app/uploads/2020/03/WorkingfromHome_1140.jpg" alt="">
+            <div class="centered-txt">
+                <h1>Services</h1>
+            </div>
+        </div>
+        <div class="container">
+            <div class="text-center font-weight-light">
+                <h4 class="align-work">How We Work</h4>
+                <p class="align-work">
+                    Our firm specializes in helping individuals develop sound retirement strategies. If you are retired – or
+                    approaching retirement – please take the time to explore our website and the wealth of information we
+                    offer. We offer personalized, hands-on service. We educate our
+                    clients about financial concepts and products, and take the mystery out of investing, insurance, estate
+                    conservation, and preserving wealth.
+                </p>
+                <p class="align-work">
+                    We understand the many challenges of retirement today and know the biggest concern for many is outliving
+                    their money. We focus on money management,
+                    as well as other issues that are critical to your financial well being.
+                </p>
+            </div>
+    
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-2">
+                    <span class="material-icons" style="font-size: 50px !important; padding-left: 5rem;">pie_chart</span>
+                    <div class="text-center font-weight-light">
+                        <h4 style="padding-left: 2rem;">Investments</h4>
+                        <ul style="list-style-type:none;">
+                            <li>
+                                Bonds
+                            </li>
+                            <li>
+                                Common Stock
+                            </li>
+                            <li>
+                                Educational IRA
+                            </li>
+                            <li>
+                                Traditional IRA
+                            </li>
+                            <li>
+                                Roth IRA
+                            </li>
+                            <li>
+                                SEP IRA
+                            </li>
+                            <li>
+                                Simple IRA
+                            </li>
+                            <li>
+                                Brokerage Accounts
+                            </li>
+                            <li>
+                                Treasury Bills
+                            </li>
+    
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-auto">
+                    <span class="material-icons" style="font-size: 50px !important; padding-left: 7rem;">leaderboard</span>
+                    <div class="text-center font-weight-light">
+                        <h4 style="padding-left: 2rem;">Financial Planning</h4>
+                        <ul style="list-style-type:none;">
+                            <li>
+                                Retirement Plans
+                            </li>
+                            <li>
+                                Tax Plans
+                            </li>
+                            <li>
+                                401(k) Plans
+                            </li>
+                            <li>
+                                403(b) Plans
+                            </li>
+                            <li>
+                                College Plans
+                            </li>
+                            <li>
+                                Estate Plans
+                            </li>
+                            <li>
+                                Money purchasing Plans
+                            </li>
+                            <li>
+                                Profit Sharing Plans
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col col-lg-2">
+                    <span class="material-icons" style="font-size: 50px !important; padding-left: 4rem;">lock_open</span>
+                    <div class="text-center font-weight-light">
+                        <h4 style="padding-left: 2rem;">Insurance</h4>
+                        <ul style="list-style-type:none;">
+                            <li>
+                                Disability Income Insurance
+                            </li>
+                            <li>
+                                Life Insurance
+                            </li>
+                            <li>
+                                Long-Term-Care Insurance
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="our-history">
+        <div class="img-prnt">
+            <img src="https://rccl-h.assetsadobe.com/is/image/content/dam/royal/data/ports/cape-liberty-new-jersey/cape-liberty-new-jersey-new-york-city-skyline.jpg?$750x320$"
+                alt="">
+            <div class="centered-txt">
+                <h1>Our Mission</h1>
+            </div>
+        </div>
+        <div class="container">
+            <div class="text-center font-weight-light">
+                <h4 class="align-work">How We Work</h4>
+                <p class="align-work">
+                    Our mission is to get to know and understand your needs, wants, and long-term goals.
+                    We want to help you develop, implement, and monitor a strategy that’s designed to address your
+                    individual situation.
+                </p>
+                <p class="align-work">
+                    We understand the challenges families face today.
+                </p>
+            </div>
+    
+            <div class="row justify-content-around">
+                <div class="col-lg-4 col-sm-12">
+                    <img src="https://static.fmgsuite.com/media/images/a9079adf-7015-404f-9854-e1b6e05a503a.jpg?v=1" alt="">
+                    <div class="text-center font-weight-light">
+                        <h4>Our Process</h4>
+                        <p>
+                            We create strategies that are tailored to your needs and goals.
+                        </p>
+                    </div>
+    
+                </div>
+                <div class="col-lg-4 col-sm-12">
+                    <img src="https://static.fmgsuite.com/media/images/cd6a27c4-1a14-4c10-897c-93d3c5e9c9b2.jpg?v=1" alt="">
+                    <div class="text-center font-weight-light">
+                        <h4>Our History</h4>
+                        <p>
+                            Years of experience have prepared us to guide you through your life transitions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    
+    <div id="home">
+        <img src="https://destinationyellowstone.com/wp-content/uploads/2016/11/thermals3.jpg" alt="skyline picture">
+        <div class="container">
+            <div class="text-center font-weight-light">
+                <h4>Introduction</h4>
+                <p>
+                    Thank you for taking the time to browse our website. The goal of this site is to tell you more about who
+                    we are,
+                    what we do and find areas of shared values.
+                </p>
+                <p>
+                    Wealth Management was built around the idea that business, finances and personal life all tend to
+                    blend
+                    together.&nbsp; The name itself comes from the idea of incorporating all of these things.&nbsp; Our lead
+                    advisor, has a multi-cultural family and wanted a name to reflect that.&nbsp; Creating a business that was rooted in serving client's wealth was a fundamental
+                    principal and
+                    something we strive for every day.
+                </p>
+            </div>
+            <div class="text-center mrg-main">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 col-sm-12">
+                        <h6>Our Approach</h6>
+                        <p class="font-weight-light">
+                            We create strategies that are tailored to your needs and goals.
+                        </p>
+                        <button class="learn-btn" id="approach">
+                            <h6 class="link-border">LEARN MORE</h6>
+                        </button>
+                    </div>
+                    <div class="col-lg-3 col-sm-12">
+                        <h6>Our Services</h6>
+                        <p class="font-weight-light">
+                            Find out how we serve our clients in their daily lives.
+                        </p>
+                        <button class="learn-btn" id="services">
+                            <h6 class="link-border">LEARN MORE</h6>
+                        </button>
+                    </div>
+                    <div class="col-lg-5 col-sm-12">
+                        <h6>Our History</h6>
+                        <p class="font-weight-light">
+                            Years of experience have prepared us to guide you through life's transitions.
+                        </p>
+                        <button class="learn-btn" id="history">
+                            <h6 class="link-border">LEARN MORE</h6>
+                        </button>
+    
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+    {% if user.is_authenticated %}
+    {% if not user.is_superuser %}
+    <div class="container">
+        <div class="contact-container">
+            <h5 class="font-weight-light"> Hello, {{ request.user.get_full_name }}! Have a Question?</h5>
+            <form>
+                <div class="form-group">
+                    <label for="question">Question</label>
+                    <textarea class="form-control" id="question" rows="3"></textarea>
+                </div>
+                <button type="button" id="contact-submit" class="btn btn-primary mb-2" onclick="contact_advisor()" data-toggle="modal" data-target="#myModal">Submit</button>
+    
+                <div class="modal" tabindex="-1" role="dialog"  id="myModal">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Success!</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick="window.location.reload();">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <p>Question has been sent to your advisor. He will contact you soon!</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick="window.location.reload();">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+    {% endif %}
+</div>
+
+
+{% endblock %}

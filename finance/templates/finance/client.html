@@ -1,0 +1,238 @@
+{% extends "finance/layout.html" %}
+{% block title %}
+Client Home
+{% endblock %}
+{% block body %}
+<div>
+
+    <div class="container">
+        {% if request.user.is_superuser %}
+        <h4> Welcome, Financial Advisor </h4>
+        
+        <div class="row justify-content-around">
+            <div class="col-lg-4 col-sm-12">
+                <div>
+                    <h5>Clients</h5>
+                </div>
+                {% for user in users %}
+                {% if not user.is_superuser %}
+                <div class="profile">
+                    <h6>{{ user.get_full_name }}</h6>
+                    <div>
+                        <span class="client-items">id:</span> {{ user.id }}
+                    </div>
+                    <div>
+                        <span class="client-items">username:</span> {{ user.username }}
+                    </div>
+                    <div>
+                        <span class="client-items">email:</span> {{ user.email }}
+                    </div>
+                    <div>
+                        <span class="client-items">date joined:</span> {{ user.date_joined }}
+                    </div>
+                    <div>
+                        <span class="client-items">last login:</span> {{ user.last_login }}
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            
+            <div class="col-lg-6 col-sm-12 profile">
+                <div>
+                    <h5>Client Accounts</h5>
+                </div>
+                {% for acct in all_accounts %}
+                <div>
+                    <h6>{{ acct.user }}</h6>
+                    <div>
+                        <span class="client-items">id:</span> {{ acct.id }}
+                    </div>
+                    <div>
+                        <span class="client-items">account number:</span> {{ acct.accountnum }}
+                    </div>
+                    <div>
+                        <span class="client-items">amount:</span> ${{ acct.amount }}
+                    </div>
+                    <div>
+                        <span class="client-items">bank:</span> {{ acct.bank }}
+                    </div>
+                    <div>
+                        <span class="client-items">link date:</span> {{ acct.linkdate }}
+                    </div>
+                    <hr>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        {% else %}
+
+        <div>
+            <div class="row justify-content-around">
+                <div class="col-lg-4 col-sm-12">
+                    <h6>{{ request.user.get_full_name }}</h6>
+                    <div>
+                        <span class="client-items">id:</span> {{ request.user.id }}
+                    </div>
+                    <div>
+                        <span class="client-items">email:</span> {{ request.user.email }}
+                    </div>
+                    <div>
+                        <span class="client-items">date joined:</span> {{ request.user.date_joined }}
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-light btn-question" onclick="show_stocks()">Foreign
+                            Exchange Rates Today</button>
+                    </div>
+                    <div id="rates-table">
+                        <table class="table table-striped table-dark">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Rate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>AUD</td>
+                                    <td id="AUD"></td>
+                                </tr>
+                                <tr>
+                                    <td>BGN</td>
+                                    <td id="BGN"></td>
+                                </tr>
+                                <tr>
+                                    <td>BRL</td>
+                                    <td id="BRL"></td>
+                                </tr>
+                                <tr>
+                                    <td>CAD</td>
+                                    <td id="CAD"></td>
+                                </tr>
+                                <tr>
+                                    <td>CHF</td>
+                                    <td id="CHF"></td>
+                                </tr>
+                                <tr>
+                                    <td>CNY</td>
+                                    <td id="CNY"></td>
+                                </tr>
+                                <tr>
+                                    <td>CZK</td>
+                                    <td id="CZK"></td>
+                                </tr>
+                                <tr>
+                                    <td>DKK</td>
+                                    <td id="DKK"></td>
+                                </tr>
+                                <tr>
+                                    <td>EUR</td>
+                                    <td id="EUR"></td>
+                                </tr>
+                                <tr>
+                                    <td>GBP</td>
+                                    <td id="GBP"></td>
+                                </tr>
+                                <tr>
+                                    <td>HKD</td>
+                                    <td id="HKD"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <div class="profile">
+                        <h4 style="display: inline-block;"> All Accounts </h4>
+                        <button class="plus-btn" onclick="add_account()">
+                            <div class="add-circle">
+                                <span class="material-icons"
+                                    style="font-size: 25px !important;">add_circle_outline</span>
+                            </div>
+                            <div class="remove-circle">
+                                <span class="material-icons"
+                                    style="font-size: 25px !important;">remove_circle_outline</span>
+                            </div>
+                        </button>
+                    </div>
+
+                    <div class="profile" id="account-div">
+                        <form id="add-new-account">
+                            <div class="form-group">
+                                <label for="bank">Bank Name: </label>
+                                <input type="text" class="form-control" id="bank" placeholder="Bank">
+                            </div>
+                            <div class="form-group">
+                                <label for="account-num">Account Number: </label>
+                                <input type="text" class="form-control" id="account-num" placeholder="Account number">
+                            </div>
+                            <div class="form-group">
+                                <label for="amount">Amount: </label>
+                                <input type="number" class="form-control" id="amount" placeholder="Amount">
+                            </div>
+                            <button type="submit" class="btn btn-primary" onclick="create_account()">Submit</button>
+                        </form>
+                    </div>
+                    <div class="profile">
+                        <hr>
+                        {% for account in accounts %}
+
+                        <div style="float: right;">
+                            <button id="del-edit-style" class="delete-{{account.id}}" onclick="del_account('{{account.id}}')">
+                                <span class="material-icons" style="font-size: 15px !important;">delete</span>
+                            </button>
+                            <button id="del-edit-style" class="edit-{{account.id}}" onclick="edit_account('{{account.id}}')">
+                                <span class="material-icons" style="font-size: 15px !important;">edit</span>
+                            </button>
+                        </div>
+                        <div class="edit-form" id="edit-form-{{account.id}}">
+                            <div id="edit-bank-{{account.id}}">
+                                <textarea name="bank-{{account.id}}" id="text-area-style" class="bank-text-{{account.id}}" cols="3"
+                                    rows="1">{{ account.bank }}</textarea>
+                            </div>
+                            <div id="edit-accountnum-{{account.id}}">
+                                <textarea name="accountnum-{{account.id}}" id="text-area-style" class="accountnum-text-{{account.id}}" cols="3"
+                                    rows="1">{{ account.accountnum }}</textarea>
+                            </div>
+                            <div id="edit-amount-{{account.id}}">
+                                <textarea name="amount-{{account.id}}" id="text-area-style" class="amount-text-{{account.id}}" cols="3"
+                                    rows="1">{{ account.amount }}</textarea>
+                            </div>
+                            <div id="div-edited-{{account.id}}">
+                                <button class="btn btn-primary btn-sm" id="save-edited-{{account.id}}">Save</button>
+                                <button class="btn btn-primary btn-sm" id="cancel-edited-{{account.id}}">Cancel</button>
+                            </div>
+                        </div>
+                        <div class="regular-form" id="regular-form-{{account.id}}">
+                            <div id="bank-name-{{account.id}}">
+                                <span class="client-items">Bank: </span> {{ account.bank }}
+                            </div>
+                            <div id="account-num-{{account.id}}">
+                                <span class="client-items">Account number:</span> {{ account.accountnum }}
+                            </div>
+                            <div id="amount-{{account.id}}">
+                                <span class="client-items">Amount:</span> ${{ account.amount }}
+                            </div>
+                        </div>
+                        <div>
+                            <span class="client-items">linked date:</span> <span
+                                style="font-size: small;">{{ account.linkdate }}</span>
+                        </div>
+                        <hr>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+</div>
+
+
+
+
+{% endblock %}

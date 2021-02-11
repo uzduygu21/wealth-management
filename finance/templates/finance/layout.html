@@ -1,0 +1,139 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{% block title %}{% endblock %} | Wealth Management</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'finance/styles.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="{% static 'finance/index.js' %}"></script>
+</head>
+
+<body class="client-bg">
+    <div class="topbar">
+        <div class="container">
+            <div class="row">
+                    <div class="col-lg-4 col-sm-12">
+                        <span class="material-icons location-style">location_on</span>
+                        <span class="address-line font-weight-light"> 333 W 70th St, 5th FL New York, NY 10001</span>
+                    </div>
+                    <div class="col-lg-2 col-sm-12">
+                        <span class="material-icons topbar-phone">call</span>
+                        <span class="font-weight-light">646-111-1111</span>
+                    </div>
+                    <div class="col-lg-3 col-sm-12">
+                        <span class="material-icons topbar-mail">mail</span>
+                        <span class="font-weight-light">financial@wealth.com</span>
+                    </div>
+                    <div class="col-lg-1 col-sm-12">
+                        <div class="col-md-auto">
+                            <a href="https://www.facebook.com/" style="color: white;">
+                                <span class="material-icons facebook">facebook</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-12">
+                        {% if user.is_authenticated %}
+                        <div class="col col-lg-2">
+                            <a class="btn-login" href="{% url 'logout' %}">Logout</a>
+                        </div>
+                        {% else %}
+                        <div class="col col-lg-2">
+                            <a class="btn-login" href="{% url 'login' %}">Login</a>
+                        </div>
+                        {% endif %}
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+        <div class="container">
+            <a class="navbar-brand navbar-color" href="#">WEALTH MANAGEMENT</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <div class="form-inline my-2 my-lg-6">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link navbar-color" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link navbar-color" href="#" onclick="load_about()">About</a>
+                        </li>
+
+                        <li class="nav-item active">
+                            <a class="nav-link navbar-color" href="#" onclick="load_services()">Services</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item dropdown active">
+                            <a class="nav-link dropdown-toggle navbar-color" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Resource Center
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item navbar-color" href="{% url 'quiz' %}">Quiz</a>
+                            </div>
+                        </li>
+                        
+                        <li class="nav-item active">
+                            <a class="nav-link navbar-color" href="{% url 'account' %}">Accounts</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </nav>
+    <div >
+        {% block body%}
+        {% endblock %}
+    </div>
+
+
+    <footer>
+        <div class="text-center">
+            <div class="row">
+                <div class="col-lg-4 col-sm-12">
+                    Contact
+                    <div>Office:
+                        <a href="tel:6464735800">646-111-1111</a>
+                    </div>
+                    <div>
+                        <a href="mailto:financial@servetwealth.com">financial@wealth.com</a>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-sm-12 disclosure">
+                    <p>
+                        Check the background of your financial professional on FINRA's BrokerCheck.
+                    </p>
+                    <p>
+                        The content is developed from sources believed to be providing accurate information. The information
+                        in this material is not intended as tax or legal advice. Please consult legal or tax professionals
+                        for specific information regarding your individual situation. Some of this material was developed
+                        and produced by FMG Suite to provide information on a topic that may be of interest. FMG Suite is
+                        not affiliated with the named representative, broker - dealer, state - or SEC - registered
+                        investment advisory firm. The opinions expressed and material provided are for general information,
+                        and should not be considered a solicitation for the purchase or sale of any security.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

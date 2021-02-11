@@ -1,0 +1,348 @@
+{% extends "finance/layout.html" %}
+{% block title %}
+Quiz
+{% endblock %}
+{% block body %}
+<div class="container content-size">
+    {% if request.user.is_superuser %}
+    <h4>Client Quiz Scores</h4>
+    <div class="">
+        <div class="">
+            {% for quiz in quizes %}
+            <div class="profile">
+                <div>
+                    <span class="client-items">Client: </span> {{ quiz.user.get_full_name }}
+                </div>
+                <div>
+                    <span class="client-items">Score: </span> {{ quiz.score }}
+                </div>
+                <div>
+                    <span class="client-items">date quiz submitted:</span> {{ quiz.quizdate }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+    <h5>Quiz</h5>
+    <form>
+        <fieldset class="form-group">
+            <div class="row">
+                <legend class="col-form-label">1) When a company goes bankrupt, who gets paid first?</legend>
+                <div id="question1">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="1-A" value="1-A">
+                        <label class="form-check-label" for="1-A">
+                            Preferred stockholders
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="1-B" value="1-B">
+                        <label class="form-check-label" for="1-B">
+                            Bond owners
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="1-C" value="1-C">
+                        <label class="form-check-label" for="1-C">
+                            Secured creditors
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="1-D" value="1-D">
+                        <label class="form-check-label" for="1-D">
+                            Suppliers and contractors
+                        </label>
+                    </div>
+                </div>
+
+                <legend class="col-form-label">2) Which of the below is one difference between an open-ended mutual fund
+                    and an ETF?</legend>
+                <div id="question2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios2" id="2-A" value="2-A">
+                        <label class="form-check-label" for="2-A">
+                            Active management
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios2" id="2-B" value="2-B">
+                        <label class="form-check-label" for="2-B">
+                            Pools many inverstors’ savings
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios2" id="2-C" value="2-C">
+                        <label class="form-check-label" for="2-C">
+                            Portfolios hold many individual securities
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios2" id="2-D" value="2-D">
+                        <label class="form-check-label" for="2-D">
+                            Shares trades throughout the day
+                        </label>
+                    </div>
+                </div>
+
+                <legend class="col-form-label">3) If you believe interest rates will increase, what should you consider
+                    doing?</legend>
+                <div id="question3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios3" id="3-A" value="3-A">
+                        <label class="form-check-label" for="3-A">
+                            Sell stock holdings
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios3" id="3-B" value="3-B">
+                        <label class="form-check-label" for="3-B">
+                            Sell long-term bonds
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios3" id="3-C" value="3-C">
+                        <label class="form-check-label" for="3-C">
+                            Buy long-term bonds
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios3" id="3-D" value="3-D">
+                        <label class="form-check-label" for="3-D">
+                            Buy gold
+                        </label>
+                    </div>
+                </div>
+
+                <legend class="col-form-label">4) A convertible bond is…?</legend>
+                <div id="question4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios4" id="4-A" value="4-A">
+                        <label class="form-check-label" for="4-A">
+                            A bond that can be converted into shares of company’s stock
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios4" id="4-B" value="4-B">
+                        <label class="form-check-label" for="4-B">
+                            A bond without a “roof” on the interest rate it may pay
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios4" id="4-C" value="4-C">
+                        <label class="form-check-label" for="4-C">
+                            A bond that can be converted to cash
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios4" id="4-D" value="4-D">
+                        <label class="form-check-label" for="4-D">
+                            A bond that pays no interest, but converts to stock
+                        </label>
+                    </div>
+                </div>
+
+                <legend class="col-form-label">5) The U.S. Gross Domestic Product (GDP) is a measure of...?</legend>
+                <div id="question5">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios5" id="5-A" value="5-A">
+                        <label class="form-check-label" for="5-A">
+                            The total value of the economy’s assets
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios5" id="5-B" value="5-B">
+                        <label class="form-check-label" for="5-B">
+                            The dollar value of the output of all publicly traded companies
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios5" id="5-C" value="5-C">
+                        <label class="form-check-label" for="5-C">
+                            The annual aggregate output of the manufacturing and mining sectors
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios5" id="5-D" value="5-D">
+                        <label class="form-check-label" for="5-D">
+                            The monetary value of all services and goods produced
+                        </label>
+                    </div>
+                </div>
+
+                <legend class="col-form-label">6) Selling short means…?</legend>
+                <div id="question6">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios6" id="6-A" value="6-A">
+                        <label class="form-check-label" for="6-A">
+                            Selling shares before they reach their peak price
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios6" id="6-B" value="6-B">
+                        <label class="form-check-label" for="6-B">
+                            Selling borrowed shares of a company
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios6" id="6-C" value="6-C">
+                        <label class="form-check-label" for="6-C">
+                            Selling shares of a stock you already own
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios6" id="6-D" value="6-D">
+                        <label class="form-check-label" for="6-D">
+                            Selling shares in the after markets
+                        </label>
+                    </div>
+                </div>
+
+                <legend class="col-form-label">7) An annuity that is purchased with a single lump sum and provides
+                    income within a year of purchase is…?</legend>
+                <div id="question7">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios7" id="7-A" value="7-A">
+                        <label class="form-check-label" for="7-A">
+                            An index annuity
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios7" id="7-B" value="7-B">
+                        <label class="form-check-label" for="7-B">
+                            An immediate annuity
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios7" id="7-C" value="7-C">
+                        <label class="form-check-label" for="7-C">
+                            A fixed rate annuity
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios7" id="7-D" value="7-D">
+                        <label class="form-check-label" for="7-D">
+                            A variable annuity
+                        </label>
+                    </div>
+                </div>
+
+
+                <legend class="col-form-label">8) The Federal Open Market Committee regularly assesses the economy and
+                    its monetary policy. How often do they meet each year?</legend>
+                <div id="question8">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios8" id="8-A" value="8-A">
+                        <label class="form-check-label" for="8-A">
+                            Once about every six weeks
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios8" id="8-B" value="8-B">
+                        <label class="form-check-label" for="8-B">
+                            Monthly
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios8" id="8-C" value="8-C">
+                        <label class="form-check-label" for="8-C">
+                            Quarterly
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios8" id="8-D" value="8-D">
+                        <label class="form-check-label" for="8-D">
+                            Semi-annually
+                        </label>
+                    </div>
+                </div>
+
+                <legend class="col-form-label">9) You are permitted to change from one 529 College Savings Plan to
+                    another plan…?</legend>
+                <div id="question9">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios9" id="9-A" value="9-A">
+                        <label class="form-check-label" for="9-A">
+                            Once in a lifetime
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios9" id="9-B" value="9-B">
+                        <label class="form-check-label" for="9-B">
+                            As often as you like
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios9" id="9-C" value="9-C">
+                        <label class="form-check-label" for="9-C">
+                            Once every 12 months
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios9" id="9-D" value="9-D">
+                        <label class="form-check-label" for="9-D">
+                            Just five times over the life of the beneficiary
+                        </label>
+                    </div>
+                </div>
+
+                <legend class="col-form-label">10) Investing in overseas markets involves risk that investing in
+                    domestic markets does not. Identify one of those risks.</legend>
+                <div id="question10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios10" id="10-A" value="10-A">
+                        <label class="form-check-label" for="10-A">
+                            International stocks move on news from around the world
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios10" id="10-B" value="10-B">
+                        <label class="form-check-label" for="10-B">
+                            The time difference can lead to unanticipated pricing discrepancies
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios10" id="10-C" value="10-C">
+                        <label class="form-check-label" for="10-C">
+                            Stocks are traded on different exchanges
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios10" id="10-D" value="10-D">
+                        <label class="form-check-label" for="10-D">
+                            Currency fluctuations can affect investment returns
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="button" class="btn btn-primary" onclick="submit_quiz()" data-toggle="modal" data-target="#myModal">Submit</button>
+            </div>
+
+            <div class="modal" tabindex="-1" role="dialog"  id="myModal">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick="window.location.reload();">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Score has been sent to your advisor.</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick="window.location.reload();">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </form>
+    {% endif %}
+
+
+</div>
+{% endblock %}
